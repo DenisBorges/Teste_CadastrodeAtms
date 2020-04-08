@@ -1,0 +1,84 @@
+﻿@using CadastrodeAtms
+@model List<AtmModel>
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if (Model.Any())
+{
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col" style="display:none">id</th>
+                <th scope="col">PC</th>
+                <th scope="col">Nome</th>
+                <th scope="col">PA</th>
+                <th scope="col">Cidade</th>
+                <th scope="col">UF</th>
+                <th scope="col">Data Cadastro</th>
+                <th scope="col">Data Atualização</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            @foreach (var item in Model)
+            {
+                <tr id="@item.id">
+                    <th scope="row" style="display:none">@item.id</th>
+                    <td>@item.AtmPc</td>
+                    <td>@item.AtmNome</td>
+                    <td>@item.AtmPa</td>
+                    <td>@item.AtmCidade</td>
+                    <td>@item.AtmUf</td>
+                    <td>@item.DataCadastro</td>
+                    <td>@item.DataAtualizacao</td>
+                    <td>
+                        <button class="btn btn-danger btn" onclick="deleteAtm(@item.id)">
+                            Excluir
+                        </button>
+                        <button class="btn btn-warning btn" onclick="editAtm(@item.id)">
+                            Editar
+                        </button>
+                    </td>
+                    <td>
+                    </td>
+                </tr>
+
+            }
+        </tbody>
+    </table>
+}
+else
+{
+    <h1>NÃO EXISTEM ATMS CADASTRADAS</h1>
+}
+
+
+@section Scripts{
+
+    <script>
+        function deleteAtm(_id) {
+
+            $.post("../Atm/Apagar", { id: _id }, (data) => {
+
+                if (data) {
+                    alert("Excluído com sucesso");
+
+                    $(`tr#${_id}`).hide();
+                } else {
+                    alert(`Erro na tentativa de exclusão do item ${_id}. Tente novamente`)
+                }
+            }).fail(() => alert(`Erro na tentativa de exclusão do item ${_id}. Tente novamente`));
+
+        }
+
+        function editAtm(_id) {
+
+            window.location.href = "../Atm/NovoCadastro/" + _id;
+
+        }
+
+    </script>
+
+}

@@ -1,0 +1,111 @@
+﻿@using CadastrodeAtms
+@model AtmModel
+@{
+    ViewData["Title"] = "Novo Cadastro de ATM";
+}
+
+<h1>NovoCadastro</h1>
+
+@*@using (Html.BeginForm("NovoCadastro", "Atm", FormMethod.Post))
+    {*@
+
+@Html.HiddenFor(x => x.id)
+
+<div class="form-group">
+    @Html.LabelFor(x => x.AtmPc)
+    @Html.TextBoxFor(x => x.AtmPc, Model != null ? (object)new { @class = "form-control col-sm-3", @readonly = "readonly" } : new { @class = "form-control col-sm-3" })
+    @Html.ValidationMessageFor(m => m.AtmPc, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(x => x.AtmNome)
+    @Html.TextBoxFor(x => x.AtmNome, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.AtmNome, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(x => x.AtmPa)
+    @Html.TextBoxFor(x => x.AtmPa, new { @class = "form-control", type = "number", min = "0" })
+    @Html.ValidationMessageFor(m => m.AtmPa, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group">
+    @Html.LabelFor(x => x.AtmEndereco)
+    @Html.TextBoxFor(x => x.AtmEndereco, new { @class = "form-control" })
+    @Html.ValidationMessageFor(m => m.AtmEndereco, "", new { @class = "text-danger" })
+</div>
+
+<div class="form-group row">
+    @Html.LabelFor(x => x.AtmBairro, new { @class = "col-sm-1 col-form-label" })
+    <div class="col-sm-3">
+        @Html.TextBoxFor(x => x.AtmBairro, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AtmBairro, "", new { @class = "text-danger" })
+    </div>
+
+    @Html.LabelFor(x => x.AtmComplemento, new { @class = "col-sm-2 col-form-label" })
+    <div class="col-sm-4">
+        @Html.TextBoxFor(x => x.AtmComplemento, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AtmComplemento, "", new { @class = "text-danger" })   
+    </div>
+</div>
+
+<div class="form-group row">
+    @Html.LabelFor(x => x.AtmUf, new { @class = "col-sm-1 col-form-label" })
+    <div class="col-sm-4">
+        @Html.DropDownListFor(r => r.AtmUf, ViewBag.Estados as List<SelectListItem>, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AtmUf, "", new { @class = "text-danger" })
+    </div>
+
+    @Html.LabelFor(x => x.AtmCidade, new { @class = "col-sm-1 col-form-label" })
+    <div class="col-sm-4">
+        @Html.DropDownListFor(r => r.AtmCidade, ViewBag.Municipios as List<SelectListItem>, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AtmCidade, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group row">
+    @Html.LabelFor(x => x.AtmCep, new { @class = "col-sm-1 col-form-label" })
+    <div class="col-sm-4">
+        @Html.TextBoxFor(x => x.AtmCep, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AtmCep, "", new { @class = "text-danger" })
+    </div>
+
+    @Html.LabelFor(x => x.AtmPontoRef, new { @class = "col-sm-1 col-form-label" })
+    <div class="col-sm-4">
+        @Html.TextBoxFor(x => x.AtmPontoRef, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AtmPontoRef, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+<div class="form-group row">
+    @Html.LabelFor(x => x.AtmLatitude, new { @class = "col-sm-1 col-form-label" })
+    <div class="col-sm-4">
+        @Html.TextBoxFor(x => x.AtmLatitude, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AtmLatitude, "", new { @class = "text-danger" })
+    </div>
+
+    @Html.LabelFor(x => x.AtmLongitude, new { @class = "col-sm-1 col-form-label" })
+    <div class="col-sm-4">
+        @Html.TextBoxFor(x => x.AtmLongitude, new { @class = "form-control" })
+        @Html.ValidationMessageFor(m => m.AtmLongitude, "", new { @class = "text-danger" })
+    </div>
+</div>
+
+
+@if (Model != null)
+{
+    <button id="Atualizar" type="submit" style="float:right;" class="btn btn-primary">Atualizar</button>
+}
+else
+{
+    <button id="Salvar" type="submit" style="float:right;" class="btn btn-primary">Cadastrar</button>
+}
+
+
+
+
+@section Scripts{
+
+    <script src="~/js/Atm/NovoCadastro/novocadastro.js"></script>
+}
+
